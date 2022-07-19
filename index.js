@@ -14,14 +14,23 @@ const io = new Server(expressServer)
 
 io.on("connection", (socket) => {
   console.log("New user connected")
+  //  ------------- disconnect message ----------//
+  socket.on("disconnect", () => {
+    console.log("User disconnect.")
+  })
 
-  setTimeout(() => {
-    socket.send("Server to client")
-  }, 5000)
+  // --------- server to client data transmition -----------//
+  // setTimeout(() => {
+  //   socket.send("Server to client")
+  // }, 5000)
 
-  // socket.on("disconnect", () => {
-  //   console.log("User disconnect.")
-  // })
+  // ---------- server to client data transmition continuously---------//
+
+  setInterval(() => {
+    let d = new Date()
+    let t = d.getTime()
+    socket.send(t)
+  }, 0.000000001)
 })
 
 expressServer.listen(3000, () => {

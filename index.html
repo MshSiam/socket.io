@@ -8,6 +8,7 @@
   </head>
   <body>
     <h2>Let's learn SOCKET.IO</h2>
+    <h1 id="myTime"></h1>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -15,7 +16,8 @@
 
       // catching server data //
       socket.on("message", (msg) => {
-        document.write(`<h3>${msg}</h3>`)
+        document.getElementById("myTime").innerHTML = ""
+        document.getElementById("myTime").innerHTML = msg
       })
     </script>
   </body>
