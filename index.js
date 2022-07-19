@@ -14,7 +14,12 @@ const io = new Server(expressServer)
 
 io.on("connection", (socket) => {
   console.log("New user connected")
+  // -----catchin data from client----- //
   socket.on("message", (name) => {
+    console.log(name)
+  })
+  // -----catchin data from client (custom event)----- //
+  socket.on("myEvent", (name) => {
     console.log(name)
   })
   //  ------------- disconnect message ----------//

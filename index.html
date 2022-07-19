@@ -16,6 +16,10 @@
     <input type="text" id="name" />
     <button onclick="send()" id="send">Send</button>
 
+    <p>custom event</p>
+
+    <button onclick="send2()" id="send2">Send</button>
+
     <script src="/socket.io/socket.io.js"></script>
     <script>
       let socket = io()
@@ -38,6 +42,12 @@
       function send() {
         let name = document.getElementById("name").value
         socket.send(name)
+      }
+
+      // -----------------sending data from client to server usning custom event ---------------//
+      function send2() {
+        let name = document.getElementById("name").value
+        socket.emit("myEvent", name)
       }
     </script>
   </body>
