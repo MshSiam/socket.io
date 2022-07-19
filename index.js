@@ -46,6 +46,9 @@ io.on("connection", (socket) => {
     let t = d.getTime()
     socket.emit("MyEvent", t)
   }, 1000)
+
+  // ---------------Broadcasting-------------------//
+  io.sockets.emit("myBroadCast", "Hello EveryOne")
 })
 
 expressServer.listen(3000, () => {
