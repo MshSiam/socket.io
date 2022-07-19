@@ -14,6 +14,9 @@ const io = new Server(expressServer)
 
 io.on("connection", (socket) => {
   console.log("New user connected")
+  socket.on("message", (name) => {
+    console.log(name)
+  })
   //  ------------- disconnect message ----------//
   socket.on("disconnect", () => {
     console.log("User disconnect.")

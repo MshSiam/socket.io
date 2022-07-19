@@ -11,20 +11,34 @@
     <h1 id="myTime"></h1>
     <h1 id="myTime2"></h1>
 
+    <h1>Send data from client to server</h1>
+
+    <input type="text" id="name" />
+    <button onclick="send()" id="send">Send</button>
+
     <script src="/socket.io/socket.io.js"></script>
     <script>
       let socket = io()
 
-      // catching server data //
+      //   ----------------catching server data ------------------------//
+
       socket.on("message", (msg) => {
         document.getElementById("myTime").innerHTML = ""
         document.getElementById("myTime").innerHTML = msg
       })
       // catching server data  using custom event//
+
       socket.on("MyEvent", (msg) => {
         document.getElementById("myTime2").innerHTML = ""
         document.getElementById("myTime2").innerHTML = msg
       })
+
+      // -----------------sending data from client to server ---------------//
+
+      function send() {
+        let name = document.getElementById("name").value
+        socket.send(name)
+      }
     </script>
   </body>
 </html>
