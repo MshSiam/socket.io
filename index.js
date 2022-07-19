@@ -8,6 +8,18 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html")
 })
 
+//  require socket.io
+const { Server } = require("socket.io")
+const io = new Server(expressServer)
+
+io.on("connection", (socket) => {
+  console.log("New user connected")
+
+  socket.on("disconnect", () => {
+    console.log("User disconnect.")
+  })
+})
+
 expressServer.listen(3000, () => {
   console.log("running")
 })
