@@ -31,6 +31,13 @@ io.on("connection", (socket) => {
     let t = d.getTime()
     socket.send(t)
   }, 0.000000001)
+
+  // -----------creating custom event --------------//
+  setInterval(() => {
+    let d = new Date()
+    let t = d.getTime()
+    socket.emit("MyEvent", t)
+  }, 1000)
 })
 
 expressServer.listen(3000, () => {
