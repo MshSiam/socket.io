@@ -52,14 +52,31 @@ io.on("connection", (socket) => {
 
   //============================Rooms===================================//
   socket.join("kitchen-room")
-  io.sockets.in("kitchen-room").emit("kitchen-event", "lets coock.")
+  let sizeOfKitchen = io.sockets.adapter.rooms.get("kitchen-room").size
+  io.sockets
+    .in("kitchen-room")
+    .emit(
+      "kitchen-event",
+      "lets coock." + "acitve connection = " + sizeOfKitchen
+    )
 
   socket.join("bed-room")
-  io.sockets.in("bed-room").emit("bed-event", "lets sleep")
-  io.sockets.in("bed-room").emit("sleep-event", "lets take some rest.")
+  let sizeOfBed = io.sockets.adapter.rooms.get("kitchen-room").size
+  io.sockets
+    .in("bed-room")
+    .emit("bed-event", "lets sleep" + "acitve connection = " + sizeOfBed)
+  io.sockets
+    .in("bed-room")
+    .emit(
+      "sleep-event",
+      "lets take some rest." + "acitve connection = " + sizeOfBed
+    )
 
   socket.join("dining-room")
-  io.sockets.in("dining-room").emit("dining-event", "lets eat")
+  let sizeOfDining = io.sockets.adapter.rooms.get("dining-room").size
+  io.sockets
+    .in("dining-room")
+    .emit("dining-event", "lets eat" + "acitve connection = " + sizeOfDining)
 })
 
 // ---------------Broadcasting (for some connection using namespace)------------------//
