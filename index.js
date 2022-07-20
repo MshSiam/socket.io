@@ -47,8 +47,19 @@ io.on("connection", (socket) => {
     socket.emit("MyEvent", t)
   }, 1000)
 
-  // ---------------Broadcasting-------------------//
+  // ---------------Broadcasting (for all connection)------------------//
   io.sockets.emit("myBroadCast", "Hello EveryOne")
+})
+
+// ---------------Broadcasting (for some connection using namespace)------------------//
+let nsp1 = io.of("/buy")
+let nsp2 = io.of("/sell")
+
+nsp1.on("connection", (socket) => {
+  nsp1.emit("MyEvent", "hello namespace 1")
+})
+nsp2.on("connection", (socket) => {
+  nsp2.emit("MyEvent2", "hello namespace 2")
 })
 
 expressServer.listen(3000, () => {

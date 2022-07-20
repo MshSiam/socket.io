@@ -21,6 +21,8 @@
     <button onclick="send2()" id="send2">Send</button>
 
     <h1 id="msg"></h1>
+    <h1 id="buy"></h1>
+    <h1 id="sell"></h1>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
@@ -55,6 +57,16 @@
       // ---------Brodcasting (for all connection) ---------------//
       socket.on("myBroadCast", (data) => {
         document.getElementById("msg").innerHTML = data
+      })
+
+      // ---------Brodcasting (for some connection using namespace) ---------------//
+      let socket2 = io("/buy")
+      socket2.on("MyEvent", (data) => {
+        document.getElementById("buy").innerHTML = data
+      })
+      let socket3 = io("/sell")
+      socket3.on("MyEvent2", (data) => {
+        document.getElementById("sell").innerHTML = data
       })
     </script>
   </body>
