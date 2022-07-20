@@ -24,6 +24,12 @@
     <h1 id="buy"></h1>
     <h1 id="sell"></h1>
 
+    <!-- rooms -->
+    <p id="kitchen"></p>
+    <p id="bed"></p>
+    <p id="sleep"></p>
+    <p id="dining"></p>
+
     <script src="/socket.io/socket.io.js"></script>
     <script>
       let socket = io()
@@ -67,6 +73,20 @@
       let socket3 = io("/sell")
       socket3.on("MyEvent2", (data) => {
         document.getElementById("sell").innerHTML = data
+      })
+
+      // ===================== Rooms ====================//
+      socket.on("kitchen-event", (data) => {
+        document.getElementById("kitchen").innerHTML = data
+      })
+      socket.on("bed-event", (data) => {
+        document.getElementById("bed").innerHTML = data
+      })
+      socket.on("sleep-event", (data) => {
+        document.getElementById("sleep").innerHTML = data
+      })
+      socket.on("dining-event", (data) => {
+        document.getElementById("dining").innerHTML = data
       })
     </script>
   </body>

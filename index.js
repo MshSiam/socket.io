@@ -49,6 +49,17 @@ io.on("connection", (socket) => {
 
   // ---------------Broadcasting (for all connection)------------------//
   io.sockets.emit("myBroadCast", "Hello EveryOne")
+
+  //============================Rooms===================================//
+  socket.join("kitchen-room")
+  io.sockets.in("kitchen-room").emit("kitchen-event", "lets coock.")
+
+  socket.join("bed-room")
+  io.sockets.in("bed-room").emit("bed-event", "lets sleep")
+  io.sockets.in("bed-room").emit("sleep-event", "lets take some rest.")
+
+  socket.join("dining-room")
+  io.sockets.in("dining-room").emit("dining-event", "lets eat")
 })
 
 // ---------------Broadcasting (for some connection using namespace)------------------//
